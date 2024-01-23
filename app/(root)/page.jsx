@@ -2,7 +2,20 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
-const page = () => {
+import { getAllEvents } from '@/lib/actions/event.actions'
+import Collection from '@/components/shared/Collection'
+const page = async() => {
+
+const events=await getAllEvents({
+  query:'',
+  category:'',
+  page:1,
+  limit:6,
+
+})
+console.log(JSON.stringify(events))
+// console.log(events.data[0
+// ].category)
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-fixed bg-contain py-5 md:py-10">
@@ -35,6 +48,16 @@ const page = () => {
 
         
         </div>
+
+        <Collection data={events.data}
+        emptyTitle="No Events Found"
+        emptyStateSubText="Come back later to see more events."
+        limit={8}
+        page={1}
+        totalPages={2}
+        collectionType="All_Events"
+        />
+
         </section>
     </>
   );

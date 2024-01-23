@@ -37,6 +37,13 @@ export async function POST(req) {
   let evt
 
   // Verify the payload with the headers
+  console.log("Bosy",body)
+  console.log("object",
+  {
+    "svix-id": svix_id,
+    "svix-timestamp": svix_timestamp,
+    "svix-signature": svix_signature
+  })
   try {
     evt = wh.verify(body, {
       "svix-id": svix_id,
@@ -80,6 +87,7 @@ export async function POST(req) {
     const newUser = await createUser(user)
 
     if (newUser) {
+      console.log("Updating metadata",id)
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id
