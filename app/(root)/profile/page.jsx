@@ -1,6 +1,6 @@
 import React from 'react'
 import Collection from '@/components/shared/Collection'
-import {Button} from '@/components/ui/Button'
+import { Button } from '../ui/button';
 import Link from 'next/link'
 import {auth} from '@clerk/nextjs'
 import {getEventsByUser} from '@/lib/actions/event.actions'
