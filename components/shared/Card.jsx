@@ -8,7 +8,7 @@ const Card = ({ event, hasOrderLink, hidePrice }) => {
 
 
     const {sessionClaims}=auth()
-    const {userId} = sessionClaims?.userId;
+    const userId = sessionClaims?.userId;
     console.log("UserId:", userId);
     
     const isEventCreator = userId === event.organizer._id.toString();
