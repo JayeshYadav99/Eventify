@@ -9,10 +9,18 @@ import Link from 'next/link';
 import Checkout from './Checkout';
 
 const CheckoutButton = async({event}) => {
+  console.log("CheckoutButton",event)
+  const {endDateTime}=event;
+  console.log("Extraved",endDateTime)
+  const endDate=new Date(endDateTime)
+  const currentDate=new Date();
+  console.log("Extraved Date",endDate)
+  console.log("Current date", currentDate)
+  console.log(endDate,"-->",currentDate);
   const user = await currentUser();
     const userId = user?.publicMetadata.userId ;
     console.log(user?.publicMetadata.userId)
-    const hasEventFinished = new Date(event.endDateTime) < new Date();
+    const hasEventFinished = endDate > currentDate;
   return (
     <div className="flex items-center gap-3">
     {!hasEventFinished ? (

@@ -8,7 +8,7 @@ import React from "react"
 
 const ProfilePage = async ({ searchParams }) => {
   const { sessionClaims } = auth()
-  const userId = sessionClaims?.userId
+  const userId = sessionClaims?.userId?.userId;
 
   const ordersPage = Number(searchParams?.ordersPage) || 1
   const eventsPage = Number(searchParams?.eventsPage) || 1

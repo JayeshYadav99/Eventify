@@ -79,19 +79,22 @@ const EventForm = ({ userId, type,event,eventId }) => {
 
     
     if(type === 'Update') {
+      console.log("Update Event callled",eventId)
       if(!eventId) {
         router.back()
         return;
       }
 
       try {
+        console.log(event)                             
         const updatedEvent = await updateEvent({
-          userId,
+          userId:userId.userId,
           event: { ...values, imageUrl: uploadedImageUrl, _id: eventId },
           path: `/events/${eventId}`
         })
 
         if(updatedEvent) {
+          console.log(updatedEvent)
           form.reset();
           router.push(`/events/${updatedEvent._id}`)
         }
