@@ -11,7 +11,7 @@ const Card = ({ event, hasOrderLink, hidePrice }) => {
     const user = sessionClaims?.userId;
     console.log("UserId:", user);
     console.log("Event Organizer:", event.organizer._id.toString())
-    const  userId = user.userId;
+    const  userId = user?.userId;
     const isEventCreator = userId === event.organizer._id.toString();
     console.log("Is Event Creator:", isEventCreator);
     
