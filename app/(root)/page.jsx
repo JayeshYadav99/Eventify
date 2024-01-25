@@ -4,12 +4,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getAllEvents } from '@/lib/actions/event.actions'
 import Collection from '@/components/shared/Collection'
-const page = async() => {
-
+import Search from '@/components/shared/Search'
+import Category from '@/lib/mongodb/database/models/category.model'
+import CategoryFilter from '@/components/shared/CategoryFilter'
+const page = async({searchParams}) => {
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query) || '';
+  const category = (searchParams?.category ) || '';
 const events=await getAllEvents({
-  query:'',
-  category:'',
-  page:1,
+  query:searchText,
+  category,
+  page,
   limit:6,
 
 })
@@ -45,16 +50,16 @@ console.log(JSON.stringify(events))
       <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
       <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
       <div className="flex w-full flex-col gap-5 md:flex-row">
-
-        
+      <Search />
+        <CategoryFilter />
         </div>
 
         <Collection data={events.data}
         emptyTitle="No Events Found"
         emptyStateSubText="Come back later to see more events."
         limit={8}
-        page={1}
-        totalPages={2}
+        page={page}
+        totalPages={events?.totalPages}
         collectionType="All_Events"
         />
 

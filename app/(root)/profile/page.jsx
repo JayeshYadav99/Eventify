@@ -14,6 +14,7 @@ const ProfilePage = async ({ searchParams }) => {
   const eventsPage = Number(searchParams?.eventsPage) || 1
 
   const orders = await getOrdersByUser({ userId, page: ordersPage })
+  console.log("ORders",orders,"-->",userId)
 
   const orderedEvents = orders?.data.map(order => order.event) || []
   const organizedEvents = await getEventsByUser({ userId, page: eventsPage })
@@ -59,7 +60,7 @@ const ProfilePage = async ({ searchParams }) => {
           emptyTitle="No events have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType="Events_Organized"
-          limit={3}
+          limit={6}
           page={eventsPage}
           urlParamName="eventsPage"
           totalPages={organizedEvents?.totalPages}

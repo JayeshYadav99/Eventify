@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card';
+import Pagination from './Pagination';
 const Collection = ({data,emptyTitle,
 emptyStateSubtext,
 page,
@@ -26,9 +27,9 @@ collectionType}) => {
             })}
           </ul>
 
-          {/* {totalPages > 1 && (
+          {totalPages > 1 && (
             <Pagination urlParamName={urlParamName} page={page} totalPages={totalPages} />
-          )} */}
+          )}
         </div>
 ):
 
